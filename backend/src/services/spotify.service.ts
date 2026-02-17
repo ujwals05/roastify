@@ -8,6 +8,7 @@ export const generateAuthUrl = async () => {
     response_type: "code"!,
     redirect_uri: spotifyConfig.redirectUri!,
     scope: spotifyConfig.scopes!,
+    show_dialog: "true",
   });
 
   return `${spotifyConfig.authUrl}?${params.toString()}`;
@@ -55,4 +56,13 @@ export const refreshAccessToken = async (refreshToken: string) => {
   );
 
   return response.data;
+};
+
+export const getUserProfile = async (accessToken: string) => {
+  const responce = await axios.get("https://api.spotify.com/v1/me", {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return responce.data;
 };
