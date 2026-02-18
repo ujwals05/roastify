@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello world");
+  res.send("Hello world"); 
 });
 
 import authRouter from "./routers/auth.routes.js";
